@@ -1,4 +1,6 @@
-﻿namespace OT.Assessment.Tester.Infrastructure;
+﻿using OT.Asessment.Shared;
+
+namespace OT.Assessment.Tester.Infrastructure;
 
 public class BogusGenerator
 {
@@ -13,7 +15,7 @@ public class BogusGenerator
 
         var testPlayers = new Faker<Player>()          
            .StrictMode(true)          
-           .RuleFor(o => o.Username, f => f.Person.UserName)           /
+           .RuleFor(o => o.Username, f => f.Person.UserName)           
            .RuleFor(o => o.AccountId, f => f.Random.Guid()).Generate(1000);
 
 
