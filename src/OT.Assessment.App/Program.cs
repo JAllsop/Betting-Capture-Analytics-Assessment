@@ -34,4 +34,12 @@ app.UseAuthorization();
 
 app.MapControllers();
 
+// DB Initialization
+using (var scope = app.Services.CreateScope())
+{
+    var config = scope.ServiceProvider.GetRequiredService<IConfiguration>();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+    await OT.Assessment.App.Infrastructure.DatabaseInitializer.InitializeDatabase(config, logger);
+}
+
 app.Run();
