@@ -1,0 +1,23 @@
+<Project Sdk="Aspire.AppHost.Sdk/13.1.0">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <UserSecretsId>f8049e17-7a65-4f92-8b17-e0c1fb360ca3</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\src\OT.Assessment.App\OT.Assessment.App.csproj" />
+    <ProjectReference Include="..\src\OT.Assessment.Consumer\OT.Assessment.Consumer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+	<PackageReference Include="Aspire.Hosting.AppHost" Version="13.2.0" />
+    <PackageReference Include="Aspire.Hosting.RabbitMQ" Version="13.2.0" />
+    <PackageReference Include="Aspire.Hosting.Redis" Version="13.2.0" />
+    <PackageReference Include="Aspire.Hosting.SqlServer" Version="13.2.0" />
+  </ItemGroup>
+
+</Project>
