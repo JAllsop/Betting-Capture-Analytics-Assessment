@@ -14,8 +14,10 @@
 
 <div align="center">
 
-[![GitHub issues](https://img.shields.io/github/issues/JAllsop/Betting-Capture-Analytics-Asessment)](https://github.com/JAllsop/Betting-Capture-Analytics-Asessment/issues)
-[![GitHub pull requests](https://img.shields.io/github/issues-pr/JAllsop/Betting-Capture-Analytics-Asessment)](https://github.com/JAllsop/Betting-Capture-Analytics-Asessment/pulls)
+[![GitHub issues](https://img.shields.io/github/issues/JAllsop/Betting-Capture-Analytics-Asessment)](https://github.com/JAllsop/Betting-Capture-Analytics-Assessment/issues)
+[![GitHub issues-closed](https://img.shields.io/github/issues-closed/JAllsop/Betting-Capture-Analytics-Asessment?color=red)](https://github.com/JAllsop/Betting-Capture-Analytics-Assessment/issues?q=is%3Aissue+is%3Aclosed)
+[![GitHub pull requests](https://img.shields.io/github/issues-pr/JAllsop/Betting-Capture-Analytics-Asessment)](https://github.com/JAllsop/Betting-Capture-Analytics-Assessment/pulls)
+[![GitHub pull requests closed](https://img.shields.io/github/issues-pr-closed/JAllsop/Betting-Capture-Analytics-Asessment?color=red)](https://github.com/JAllsop/Betting-Capture-Analytics-Assessment/pulls?q=is%3Apr+is%3Aclosed)
 
 </div>
 
