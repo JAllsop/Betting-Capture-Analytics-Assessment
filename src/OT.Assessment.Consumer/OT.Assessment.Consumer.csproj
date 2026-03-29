@@ -17,6 +17,11 @@
 
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\OT.Asessment.Shared\OT.Asessment.Shared.csproj" />
+	</ItemGroup>
+
+
+	<ItemGroup>
 		<None Update="appsettings.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 		</None>
