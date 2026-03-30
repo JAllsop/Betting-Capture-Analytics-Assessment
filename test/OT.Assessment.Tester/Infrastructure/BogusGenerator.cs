@@ -1,4 +1,4 @@
-﻿using OT.Asessment.Shared;
+﻿using OT.Assessment.Shared;
 
 namespace OT.Assessment.Tester.Infrastructure;
 

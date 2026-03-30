@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace OT.Asessment.Shared
+namespace OT.Assessment.Shared
 {
         public class CasinoWager
         {
