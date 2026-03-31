@@ -38,6 +38,7 @@ To demonstrate a professional development workflow, this project was managed usi
 
 - [Overview](#overview)
 - [Project Management and Traceability](#project-management-and-traceability)
+- [System Requirements](#system-requirements)
 - [Table of Contents](#table-of-contents)
 - [Implementation Deviations](#implementation-deviations)
 - [Features and Capabilities](#features-and-capabilities)
@@ -63,6 +64,16 @@ As a result, the prerequisites from the initial specification in [**Online Betti
 
 - **SQL Authentication vs Windows Auth:** The original spec requested `Integrated Security=SSPI` - because this solution runs SQL Server in a Linux-based Docker container, Windows Authentication is not supported. The system uses **SQL Authentication** (`sa` user with password `Guest123!`)
 - **Orchestrated RabbitMQ:** Rather than requiring a manual RabbitMQ installation, the message broker is provisioned automatically as a containerized resource via the `Aspire AppHost` or via the `docker-compose.yaml` included
+
+## System Requirements
+
+To build and run this solution locally, ensure your environment meets the following specifications:
+
+- **[.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)** (Required to compile and run the application logic)
+- **[Docker Desktop](https://www.docker.com/products/docker-desktop/)** (Required to host SQL Server, RabbitMQ, and Redis containers)
+  <br/>*Note: Ensure the WSL 2 backend is enabled for optimal performance on Windows.*
+- **[Visual Studio 2026](https://visualstudio.microsoft.com/vs/)** or **[JetBrains Rider](https://www.jetbrains.com/rider/)**
+- **[Git](https://git-scm.com/downloads)** (For repository management and version control)
 
 ## Features and Capabilities
 
