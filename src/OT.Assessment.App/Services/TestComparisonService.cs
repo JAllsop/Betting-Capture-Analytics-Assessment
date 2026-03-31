@@ -27,7 +27,7 @@ namespace OT.Assessment.App.Services
                 : [];
 
             var dbWagers = (await db.QueryAsync<CasinoWager>("SELECT * FROM Wagers")).ToList();
-            var dbPlayerStats = (await db.QueryAsync<PlayerStat>("SELECT * FROM PlayerSpendStats")).ToList();
+            var dbPlayerStats = (await db.QueryAsync<PlayerStatResponse>("SELECT * FROM PlayerSpendStats")).ToList();
 
             // Get only unique wagers from the source file for the 'Expected' values
             var uniqueSentWagers = sentWagers
@@ -88,9 +88,9 @@ namespace OT.Assessment.App.Services
 
             foreach (var dbStat in dbPlayerStats.OrderByDescending(x => x.TotalSpend).Take(10))
             {
-                sentStats.TryGetValue(dbStat.AccountId.ToString(), out var sent);
+                sentStats.TryGetValue(dbStat.AccountId, out var sent);
                 var diff = dbStat.TotalSpend - (sent?.Total ?? 0);
-                var isMatch = Math.Abs(diff) < 0.05;
+                var isMatch = Math.Abs(diff) < (decimal)0.05;
 
                 report.AppendLine($"Player {dbStat.Username} ({dbStat.AccountId}):");
                 report.AppendLine($"  - DB Spend: {dbStat.TotalSpend:N2} | Sent Source: {sent?.Total ?? 0:N2}");

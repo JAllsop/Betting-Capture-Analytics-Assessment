@@ -5,7 +5,7 @@ namespace OT.Assessment.Shared
         public class CasinoWager
         {
             [JsonPropertyName("wagerId")]
-            public string WagerId { get; set; } = default!;
+            public Guid WagerId { get; set; } = default!;
             
 
             [JsonPropertyName("theme")]
@@ -21,15 +21,15 @@ namespace OT.Assessment.Shared
             
 
             [JsonPropertyName("transactionId")]
-            public string TransactionId { get; set; } = default!;
+            public Guid TransactionId { get; set; } = default!;
             
 
             [JsonPropertyName("brandId")]
-            public string BrandId { get; set; } = default!;
+            public Guid BrandId { get; set; } = default!;
             
 
             [JsonPropertyName("accountId")]
-            public string AccountId { get; set; } = default!;
+            public Guid AccountId { get; set; } = default!;
             
 
             [JsonPropertyName("Username")]
@@ -37,15 +37,15 @@ namespace OT.Assessment.Shared
             
 
             [JsonPropertyName("externalReferenceId")]
-            public string ExternalReferenceId { get; set; } = default!;
+            public Guid ExternalReferenceId { get; set; } = default!;
             
 
             [JsonPropertyName("transactionTypeId")]
-            public string TransactionTypeId { get; set; } = default!;
+            public Guid TransactionTypeId { get; set; } = default!;
             
 
             [JsonPropertyName("amount")]
-            public double Amount { get; set; } = default!;
+            public decimal Amount { get; set; } = default!;
             
 
             [JsonPropertyName("createdDateTime")]

@@ -1,6 +1,5 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
-using OT.Assessment.Shared;
 using System.Collections.Concurrent;
 
 var bg = new BogusGenerator();
