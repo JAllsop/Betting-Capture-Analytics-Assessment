@@ -27,9 +27,17 @@ This repository contains a production-grade solution for the [**Online Betting D
 For a deep dive into the architectural trade-offs, performance optimizations (such as denormalized DB schema, TVP batching, and dual-layer caching), 
 and design decisions made to meet the 500 RPS requirement, please refer to the [**Architectural Notes (NOTES.md)**](NOTES.md)
 
+## Project Management and Traceability
+
+To demonstrate a professional development workflow, this project was managed using a structured kanban GitHub project, incorporating task-tracking:
+
+- **Task Tracking:** Requirements and epics/tasks were planned and tracked using a [GitHub Project Board](https://github.com/users/JAllsop/projects/3).
+- **Code Quality & Git Flow:** Feature development and merges were performed via [Closed Pull Requests](https://github.com/JAllsop/Betting-Capture-Analytics-Assessment/pulls?q=is%3Apr+is%3Aclosed)
+
 ## Table of Contents
 
 - [Overview](#overview)
+- [Project Management and Traceability](#project-management-and-traceability)
 - [Table of Contents](#table-of-contents)
 - [Implementation Deviations](#implementation-deviations)
 - [Features and Capabilities](#features-and-capabilities)
