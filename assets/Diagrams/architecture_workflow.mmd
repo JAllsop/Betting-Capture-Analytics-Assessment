@@ -1,0 +1,39 @@
+graph TD
+    %% Define Styles
+    classDef client fill:#f9f9f9,stroke:#333,stroke-width:2px;
+    classDef api fill:#512BD4,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef queue fill:#FF6600,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef worker fill:#239120,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef db fill:#CC2927,stroke:#fff,stroke-width:2px,color:#fff;
+    classDef cache fill:#DC382D,stroke:#fff,stroke-width:2px,color:#fff;
+
+    Tester[Load Tester / Client]:::client
+
+    subgraph App Layer
+        API[REST API Proxy & Services]:::api
+    end
+
+    subgraph Messaging Layer
+        Rabbit[(RabbitMQ)]:::queue
+    end
+
+    subgraph Consumer Layer
+        Worker[Background Batch Consumer]:::worker
+    end
+
+    subgraph Data Layer
+        Redis[(Redis Cache)]:::cache
+        SQL[(SQL Server)]:::db
+    end
+
+    %% Ingestion Flow
+    Tester -->|1. POST Wager| API
+    API -->|2. Publish| Rabbit
+    Rabbit -->|3. Consume| Worker
+    Worker -->|4. Batch Insert TVP| SQL
+
+    %% Read Flow
+    Tester -.->|5. GET Analytics & History| API
+    API -.->|6. Fetch Leaderboard & Paged Wagers| Redis
+    Redis -.->|7. Cache Miss| SQL
+    SQL -.->|8. Hydrate Cache & Return| API
