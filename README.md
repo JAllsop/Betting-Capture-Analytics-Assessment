@@ -100,7 +100,7 @@ To build and run this solution locally, ensure your environment meets the follow
 
 ## Architecture Workflow
 
-<img src="./assets/diagrams/architecture_workflow.svg" alt="Architecture Workflow" width="800"/>
+<img src="https://github.com/JAllsop/Betting-Capture-Analytics-Assessment/blob/main/assets/Diagrams/architecture_workflow.svg" alt="Architecture Workflow" width="800"/>
 
 ## Database Schema
 
