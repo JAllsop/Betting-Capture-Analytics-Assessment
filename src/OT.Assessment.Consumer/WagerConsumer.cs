@@ -50,7 +50,7 @@ namespace OT.Assessment.Consumer
             table.Columns.Add("Theme", typeof(string));
             table.Columns.Add("Provider", typeof(string));
             table.Columns.Add("GameName", typeof(string));
-            table.Columns.Add("TransactionId", typeof(string));
+            table.Columns.Add("TransactionId", typeof(Guid));
             table.Columns.Add("BrandId", typeof(Guid));
             table.Columns.Add("AccountId", typeof(Guid));
             table.Columns.Add("Username", typeof(string));
@@ -65,19 +65,18 @@ namespace OT.Assessment.Consumer
 
             foreach (var w in wagers)
             {
-                // Convert strings to GUIDs - would change the model to use GUIDs but don't want to break the contract with the Bogus Tester
                 table.Rows.Add(
-                    Guid.Parse(w.WagerId),
+                    w.WagerId,
                     w.Theme,
                     w.Provider,
                     w.GameName,
                     w.TransactionId,
-                    Guid.Parse(w.BrandId),
-                    Guid.Parse(w.AccountId),
+                    w.BrandId,
+                    w.AccountId,
                     w.Username,
-                    Guid.Parse(w.ExternalReferenceId),
-                    Guid.Parse(w.TransactionTypeId),
-                    (decimal)w.Amount, // Cast double to decimal for SQL precision (need precision with financial transaction data)
+                    w.ExternalReferenceId,
+                    w.TransactionTypeId,
+                    w.Amount,
                     w.CreatedDateTime,
                     w.NumberOfBets,
                     w.CountryCode,

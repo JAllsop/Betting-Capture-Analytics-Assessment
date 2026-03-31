@@ -43,7 +43,8 @@ public static class DatabaseInitializer
             {
                 ShouldHandle = new PredicateBuilder().Handle<Exception>(), // Handle SqlException, Win32Exception, etc.
                 BackoffType = DelayBackoffType.Exponential,
-                UseJitter = true, // Prevents multiple instances from retrying in sync
+                // would enable on a real implementation to avoid thundering herd issues, but for demo purposes it just delays the start up
+                //UseJitter = true,
                 MaxRetryAttempts = 10,
                 Delay = TimeSpan.FromSeconds(4),
                 OnRetry = args =>

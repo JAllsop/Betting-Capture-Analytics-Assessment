@@ -1,18 +1,33 @@
 using MassTransit;
-using OT.Assessment.App.Models;
+using Microsoft.AspNetCore.Diagnostics;
+using OT.Assessment.App.Data;
+using StackExchange.Redis;
 using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddSingleton<IConnectionMultiplexer>(sp =>
+{
+    var connStr = builder.Configuration.GetConnectionString("cache") ?? "localhost";
+    return ConnectionMultiplexer.Connect(connStr);
+});
+
 builder.Services.AddControllers();
 
-// Handles the conversion of GUIDs stored as strings in the database (set to string to as tester references them as such)
-Dapper.SqlMapper.AddTypeHandler(new GuidAsStringHandler()); 
+// Database Connection
 builder.Services.AddScoped<System.Data.IDbConnection>(sp =>
 {
     var connStr = builder.Configuration.GetConnectionString("OT-Assessment-DB");
     return new Microsoft.Data.SqlClient.SqlConnection(connStr);
 });
-builder.Services.AddScoped<OT.Assessment.App.Services.ITestComparisonService, OT.Assessment.App.Services.TestComparisonService>();
+
+// Repositories & Services
+builder.Services.AddScoped<IPlayerRepository, PlayerRepository>();
+builder.Services.AddScoped<IPlayerService, PlayerService>();
+builder.Services.AddHostedService<CacheWarmerService>();
+
+// Audit & Comparison Services
+builder.Services.AddScoped<ITestComparisonService, TestComparisonService>();
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckl
 builder.Services.AddEndpointsApiExplorer();
@@ -36,6 +51,28 @@ builder.Services.AddMassTransit(x =>
 builder.AddServiceDefaults();
 
 var app = builder.Build();
+
+app.UseExceptionHandler(exceptionHandlerApp =>
+{
+    exceptionHandlerApp.Run(async context =>
+    {
+        var exceptionHandlerPathFeature = context.Features.Get<IExceptionHandlerPathFeature>();
+        var exception = exceptionHandlerPathFeature?.Error;
+
+        var problemDetails = new Microsoft.AspNetCore.Mvc.ProblemDetails
+        {
+            Status = StatusCodes.Status500InternalServerError,
+            Title = "An unexpected error occurred",
+            // In a real world application we would hide error details, as this is a demo/assessment we want to see the error details in the response
+            //Detail = app.Environment.IsDevelopment() ? exception?.Message : "Contact support.",
+            Detail = exception?.Message ?? "An unexpected error occurred",
+            Instance = context.Request.Path
+        };
+
+        context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+        await context.Response.WriteAsJsonAsync(problemDetails);
+    });
+});
 
 // As this is an assessment/demo we always want to have Swagger available
 //if (app.Environment.IsDevelopment())

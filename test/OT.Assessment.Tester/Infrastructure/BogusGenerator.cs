@@ -1,6 +1,4 @@
-﻿using OT.Assessment.Shared;
-
-namespace OT.Assessment.Tester.Infrastructure;
+﻿namespace OT.Assessment.Tester.Infrastructure;
 
 public class BogusGenerator
 {
