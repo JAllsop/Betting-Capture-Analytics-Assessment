@@ -66,14 +66,6 @@ As a result, the prerequisites from the initial specification in [**Online Betti
 
 ## System Requirements
 
-To build and run this solution locally, you need the following:
-
-You are absolutely correct. One of the core strengths of the .NET ecosystem and **.NET Aspire** is that everything can be managed via the CLI. An IDE is a productivity tool, but the only hard requirements for running the code are the SDK and the container runtime.
-
-Here is the revised **System Requirements** section. It prioritizes the functional tools (SDK and Docker) and moves IDEs to an "Optional" category.
-
-## System Requirements
-
 To build and run this solution locally, ensure your environment meets the following core specifications:
 
 ### Core Requirements
