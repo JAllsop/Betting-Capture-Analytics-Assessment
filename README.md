@@ -39,7 +39,6 @@ To demonstrate a professional development workflow, this project was managed usi
 - [Overview](#overview)
 - [Project Management and Traceability](#project-management-and-traceability)
 - [System Requirements](#system-requirements)
-- [Table of Contents](#table-of-contents)
 - [Implementation Deviations](#implementation-deviations)
 - [Features and Capabilities](#features-and-capabilities)
 - [.NET Aspire Infrastructure](#net-aspire-infrastructure)
