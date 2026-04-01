@@ -67,13 +67,32 @@ As a result, the prerequisites from the initial specification in [**Online Betti
 
 ## System Requirements
 
-To build and run this solution locally, ensure your environment meets the following specifications:
+To build and run this solution locally, you need the following:
 
-- **[.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)** (Required to compile and run the application logic)
-- **[Docker Desktop](https://www.docker.com/products/docker-desktop/)** (Required to host SQL Server, RabbitMQ, and Redis containers)
-  <br/>*Note: Ensure the WSL 2 backend is enabled for optimal performance on Windows.*
-- **[Visual Studio 2026](https://visualstudio.microsoft.com/vs/)** or **[JetBrains Rider](https://www.jetbrains.com/rider/)**
-- **[Git](https://git-scm.com/downloads)** (For repository management and version control)
+You are absolutely correct. One of the core strengths of the .NET ecosystem and **.NET Aspire** is that everything can be managed via the CLI. An IDE is a productivity tool, but the only hard requirements for running the code are the SDK and the container runtime.
+
+Here is the revised **System Requirements** section. It prioritizes the functional tools (SDK and Docker) and moves IDEs to an "Optional" category.
+
+---
+
+## System Requirements
+
+To build and run this solution locally, ensure your environment meets the following core specifications:
+
+### Core Requirements
+
+- **[.NET 8.0 SDK](https://dotnet.microsoft.com/en-us/download/dotnet/8.0)** (or later): Required to compile, build, and run
+- **[Docker Desktop](https://www.docker.com/products/docker-desktop/)** or a compatible container runtime: Required to host the SQL Server, RabbitMQ, and Redis
+    <br/> *Note: Ensure the WSL 2 backend is enabled (if running on Windows)*
+- **[Git](https://git-scm.com/downloads)**: Got cloning the repo
+
+### Optional (Recommended)
+
+The project can be managed/run completely standalone using the `dotnet` CLI (via the terminal), you can use **one** of the following IDEs which provide a better experience for debugging and review:
+
+- **[Visual Studio 2022/2026](https://visualstudio.microsoft.com/downloads/)**
+- **[JetBrains Rider](https://www.jetbrains.com/rider/)**
+- **[VS Code](https://code.visualstudio.com/)**
 
 ## Features and Capabilities
 
