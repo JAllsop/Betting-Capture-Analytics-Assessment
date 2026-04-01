@@ -72,8 +72,6 @@ You are absolutely correct. One of the core strengths of the .NET ecosystem and 
 
 Here is the revised **System Requirements** section. It prioritizes the functional tools (SDK and Docker) and moves IDEs to an "Optional" category.
 
----
-
 ## System Requirements
 
 To build and run this solution locally, ensure your environment meets the following core specifications:
