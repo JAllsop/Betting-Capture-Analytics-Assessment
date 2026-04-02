@@ -36,11 +36,11 @@ To demonstrate a professional development workflow, this project was managed usi
 
 ## Table of Contents
 
-- [Overview](#overview)
-- [Project Management and Traceability](#project-management-and-traceability)
-- [System Requirements](#system-requirements)
 - [Implementation Deviations](#implementation-deviations)
 - [Features and Capabilities](#features-and-capabilities)
+- [System Requirements](#system-requirements)
+  - [Core Requirements](#core-requirements)
+  - [Optional (Recommended)](#optional-recommended)
 - [.NET Aspire Infrastructure](#net-aspire-infrastructure)
 - [Architecture Workflow](#architecture-workflow)
 - [Database Schema](#database-schema)
