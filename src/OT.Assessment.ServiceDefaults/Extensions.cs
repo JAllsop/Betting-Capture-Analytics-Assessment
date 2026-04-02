@@ -20,7 +20,7 @@ namespace Microsoft.Extensions.Hosting
 
         public static TBuilder AddServiceDefaults<TBuilder>(this TBuilder builder) where TBuilder : IHostApplicationBuilder
         {
-            builder.ConfigureOpenTelemetry();
+            //builder.ConfigureOpenTelemetry(); // heavily impacts performance (when run locally, would be better on a host machine)
 
             builder.AddDefaultHealthChecks();
 
