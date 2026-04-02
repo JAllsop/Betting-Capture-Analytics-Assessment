@@ -15,6 +15,7 @@ builder.Services.AddMassTransit(x =>
         cfg.Options<BatchOptions>(options => options
             .SetMessageLimit(200)
             .SetTimeLimit(TimeSpan.FromSeconds(5))
+            .SetConcurrencyLimit(10)
         );
     });
 
@@ -32,7 +33,7 @@ builder.Services.AddMassTransit(x =>
             {
                 b.MessageLimit = 200;
                 b.TimeLimit = TimeSpan.FromSeconds(5);
-                b.ConcurrencyLimit = 1;
+                b.ConcurrencyLimit = 10;
             });
 
             e.ConfigureConsumer<WagerConsumer>(context);

@@ -13,7 +13,8 @@ var rabbit = builder.AddRabbitMQ("messaging", rabbitUsername, rabbitPassword)
 var redis = builder.AddRedis("cache", port: 6379);
 
 builder.AddProject<Projects.OT_Assessment_App>("api-app")
-                 .WithHttpsEndpoint(port: 7120, name: "tester-endpoint") // given a unique name so it doesn't conflict with launchSettings
+                 // given a unique name so it doesn't conflict with launchSettings
+                 .WithHttpsEndpoint(port: 7120, name: "tester-endpoint") 
                  .WithReference(db)
                  .WithReference(rabbit)
                  .WithReference(redis);

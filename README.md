@@ -51,8 +51,8 @@ To demonstrate a professional development workflow, this project was managed usi
     - [Data Audit Results:](#data-audit-results)
 - [API Performance (**During Load**):](#api-performance-during-load)
 - [Getting Started (How to Run)](#getting-started-how-to-run)
-  - [Profile 1: .NET Aspire (Recommended)](#profile-1-net-aspire-recommended)
-  - [Profile 2: Docker Compose (Alternative)](#profile-2-docker-compose-alternative)
+  - [Profile 1: Docker Compose Hybrid (Recommended)](#profile-1-docker-compose-hybrid-recommended)
+  - [Profile 2: .NET Aspire (Alternative)](#profile-2-net-aspire-alternative)
   - [Running the Load Test](#running-the-load-test)
 - [Project Nuget Packages](#project-nuget-packages)
 
@@ -98,7 +98,7 @@ The project can be managed/run completely standalone using the `dotnet` CLI (via
 <table width="100%">
   <tr>
     <td width="50%" align="center"><em>.NET Aspire Dashboard (Healthy Resources)</em></td>
-    <td width="50%" align="center"><em>.NET Aspire Structured Logs (DB Upgrade Success)</em></td>
+    <td width="50%" align="center"><em>.NET Aspire Console Logs (Structured Logs disabled for performance)</em></td>
   </tr>
   <tr>
     <td><img src="assets/Screenshots/Aspire_Dashboard.png" alt="Aspire Dashboard" width="100%" /></td>
@@ -300,54 +300,50 @@ Player Sandy_Ward (b84ea7d0-3bab-08e5-d4fd-f63a9d8dbee3):
 
 ## Getting Started (How to Run)
 
-The database schema includes a custom password (`Guest123!`) and standardized port mappings to ensure compatibility across Aspire and Docker environments
-> Note: Swagger UI is enabled by default for this assessment
+The database schema includes a custom password (`Guest123!`) and standardized port mappings to ensure compatibility across Aspire and Docker environments. Automated PowerShell scripts are provided in the `assets/scripts` directory to ensure environment variables and connection strings are correctly mapped in **Release** mode.
+> **Note:** Swagger UI is enabled by default for this assessment
 
-### Profile 1: .NET Aspire (Recommended)
+### Profile 1: Docker Compose Hybrid (Recommended)
 
-.NET Aspire orchestrates the API, Worker, RabbitMQ, SQL Server, and Redis automatically
-
-1. Open a terminal in the root directory
-2. Run the AppHost:
-   ```bash
-   dotnet run --project src/OT.Assessment.AppHost/OT.Assessment.AppHost.csproj
-   ```
-3. Open the Aspire Dashboard (link provided in terminal) to view telemetry and access the Swagger UI endpoint
-   <br/> _You can access the `App API` Swagger, RabbitMQ Web Portal, view SQL Connection Strings and view system logs (from all apps and services) all from the Aspire Dashboard_
-
-### Profile 2: Docker Compose (Alternative)
-
-For testing in a containerized environment
+This profile is for testing in a containerized infrastructure while running the .NET projects locally via the CLI. The script automatically handles infrastructure startup and launches the API and Consumer in separate terminal windows. Performance is optimal locally using this approach.
 
 1. Open a terminal in the root directory
-2. Build and run the containers in detached mode:
+2. Run the Docker hybrid script:
    ```powershell
-   docker compose up -d --build
+   .\assets\scripts\docker_run.ps1
    ```
-3. Build and Run the `App API`
+3. The script will:
+   - Spin up SQL Server, Redis, and RabbitMQ via Docker
+   - Launch the `Consumer` in a new window
+   - Launch the `App API` in a new window
+4. Access Swagger UI at: `http://localhost:5021/swagger`
+
+### Profile 2: .NET Aspire (Alternative)
+
+.NET Aspire orchestrates the API, Worker, RabbitMQ, SQL Server, and Redis automatically. This script ensures the dashboard and telemetry are correctly initialized.
+> Note: OpenTelemetry has been disabled by default to improve performance. Running Aspire locally has too much overhead and results are far worse than the docker method. In a real-world environment it would be deployed on a host machine and performance would be comparable
+
+1. Open a terminal in the root directory
+2. Run the Aspire orchestration script:
    ```powershell
-   dotnet run --project .\OT.Assessment.App\OT.Assessment.App.csproj
+   .\assets\scripts\aspire_run.ps1
    ```
-4. Build and Run the `Consumer`
-   ```powershell
-   dotnet run --project .\OT.Assessment.Consumer\OT.Assessment.Consumer.csproj
-   ```
-5. Access Swagger at `http://localhost:7120/swagger`
+3. Open the **Aspire Dashboard** (link provided in terminal) to view telemetry and access the Swagger UI endpoint
+   <br/> > You can access the App API Swagger, RabbitMQ Web Portal, view SQL Connection Strings, and view system logs all from the Aspire Dashboard
 
 ### Running the Load Test
 
-**CRITICAL INITIALIZATION STEP:** Before running the load test, you must wait for the infrastructure and database to fully initialize
+**CRITICAL INITIALIZATION STEP:** Before running the load test, you must wait for the infrastructure and database to fully initialize.
 
-1. Ensure the infrastructure is running via Aspire or Docker
-2. **Wait for Health Checks:** Check the Aspire Dashboard to ensure all resources (`api-app`, `consumer-worker`, `sql`, `redis`, `messaging`) are marked as **Healthy** (green)
-3. **Verify Database Upgrade:** Ensure DbUp has successfully migrated the schema
-     - *If using Aspire:* Go to the **Structured** tab on the dashboard and look for the log indicating the DB Upgrade has run successfully
-     - *If using Docker:* Look for the identical success message in the terminal output
-4. Once verified, open a new terminal and run the modified `BogusGenerator` project:
-   ```bash
-   dotnet run --project src/OT.Assessment.Tester/OT.Assessment.Tester.csproj
+1. Ensure the infrastructure is running via **Profile 1** or **Profile 2**
+2. **Wait for Health Checks:** * *Aspire:* Ensure all resources (`api-app`, `consumer-worker`, `sql`, `redis`, `messaging`) are marked as **Healthy** (green)
+   - *Docker:* Ensure the terminal windows show the applications have successfully started and connected
+3. **Verify Database Upgrade:** Ensure **DbUp** has successfully migrated the schema. Look for the "Success" log in the terminal or Aspire Console Logs
+4. Once verified, run the automated tester script:
+   ```powershell
+   .\assets\scripts\tester_run.ps1
    ```
-5. View the `Consumer` logs to see the wagers coming and being saved
+5. Monitor the `Consumer` logs to see wagers being processed and saved
 6. Check the API endpoint `/api/Player/debug/testResults` to view the automated 3-way reconciliation audit
 
 ## Project Nuget Packages
