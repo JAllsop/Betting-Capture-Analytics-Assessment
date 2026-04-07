@@ -333,18 +333,19 @@ This profile is for testing in a containerized infrastructure while running the 
 
 ### Running the Load Test
 
-**CRITICAL INITIALIZATION STEP:** Before running the load test, you must wait for the infrastructure and database to fully initialize.
+>**NOTE:** Before running the load test, you must wait for the infrastructure and database to fully initialize
 
 1. Ensure the infrastructure is running via **Profile 1** or **Profile 2**
-2. **Wait for Health Checks:** * *Aspire:* Ensure all resources (`api-app`, `consumer-worker`, `sql`, `redis`, `messaging`) are marked as **Healthy** (green)
+2. **Wait for Health Checks:**
    - *Docker:* Ensure the terminal windows show the applications have successfully started and connected
-3. **Verify Database Upgrade:** Ensure **DbUp** has successfully migrated the schema. Look for the "Success" log in the terminal or Aspire Console Logs
-4. Once verified, run the automated tester script:
+   - *Aspire:* Ensure all resources (`api-app`, `consumer-worker`, `sql`, `redis`, `messaging`) are marked as **Healthy** (green)
+4. **Verify Database Upgrade:** Ensure **DbUp** has successfully migrated the schema. Look for the "Success" log in the terminal or Aspire Console Logs
+5. Once verified, run the automated tester script:
    ```powershell
    .\assets\scripts\tester_run.ps1
    ```
-5. Monitor the `Consumer` logs to see wagers being processed and saved
-6. Check the API endpoint `/api/Player/debug/testResults` to view the automated 3-way reconciliation audit
+6. Monitor the `Consumer` logs to see wagers being processed and saved
+7. Check the API endpoint `/api/Player/debug/testResults` to view the automated 3-way reconciliation audit
 
 ## Project Nuget Packages
 
