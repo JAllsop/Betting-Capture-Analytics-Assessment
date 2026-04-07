@@ -198,7 +198,7 @@ Integrity is instead guaranteed by the `sp_ProcessWagerBatch` SP
 
 test suite: nbomber_default_test_suite_name
 test name: nbomber_default_test_name
-session id: 2026-03-31_14.44.03_session_2c84894d
+session id: 2026-04-07_10.26.69_session_844888a3
 
 ──────────────────────────────────────────────────── scenario stats ────────────────────────────────────────────────────
 
@@ -211,14 +211,14 @@ scenario: hello_world_scenario
 load simulations:
   - iterations_for_inject, rate: 500, interval: 00:00:02, iterations: 7000
 
-┌─────────────────────────┬─────────────────────────────────────────────────────────┐
-│                    step │ ok stats                                                │
-├─────────────────────────┼─────────────────────────────────────────────────────────┤
-│                    name │ global information                                      │
-│           request count │ all = 7000, ok = 7000, RPS = 250                        │
-│            latency (ms) │ min = 10.91, mean = 47.99, max = 720.74, StdDev = 63.18 │
-│ latency percentile (ms) │ p50 = 26.62, p75 = 46.46, p95 = 167.55, p99 = 338.69    │
-└─────────────────────────┴─────────────────────────────────────────────────────────┘
+┌─────────────────────────┬────────────────────────────────────────────────────────┐
+│                    step │ ok stats                                               │
+├─────────────────────────┼────────────────────────────────────────────────────────┤
+│                    name │ global information                                     │
+│           request count │ all = 7000, ok = 7000, RPS = 250                       │
+│            latency (ms) │ min = 12.95, mean = 24.62, max = 546.2, StdDev = 22.88 │
+│ latency percentile (ms) │ p50 = 20.51, p75 = 23.89, p95 = 38.75, p99 = 113.02    │
+└─────────────────────────┴────────────────────────────────────────────────────────┘
 ```
 
 ### Data Audit and Persistence
