@@ -22,7 +22,7 @@
 
 ## Overview
 
-This project is the complete solution for the [**Online Betting Data Capture and Analytics System**](TASK.md) assessment. Implemented is a .NET 8 distributed architecture designed to ingest 500+ wager events per second via an asynchronous RabbitMQ pipeline, utilizing batched saves to SQL Server and real-time analytics (via [.NET Aspire](https://aspire.dev/)) and caching handled via Redis
+This project is the complete solution for the [**Online Betting Data Capture and Analytics System**](TASK.md) assessment. Implemented is a .NET 8 distributed architecture designed to ingest 250+ wager events per second via an asynchronous RabbitMQ pipeline, utilizing batched saves to SQL Server and real-time analytics (via [.NET Aspire](https://aspire.dev/)) and caching handled via Redis
 
 For a detailed explanation of the architectural trade-offs, performance optimizations (such as denormalized DB schema, TVP batching, and dual-layer caching), 
 and design decisions made to me the requirement - refer to the [**Architectural Notes (NOTES.md)**](NOTES.md)
